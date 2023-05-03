@@ -9,8 +9,10 @@
 #define dancinglinks_h
 
 #include <vector>
+#include <iostream>
 
-namespace {
+
+
 struct Node {
     Node* left;
     Node* up;
@@ -20,20 +22,24 @@ struct Node {
     int size;
     int row;
 };
-}
+
 class DancingLinks {
 private:
     Node* m_HeadNode;
     std::vector<int> m_RowsCover;
 public:
     DancingLinks(std::vector<std::vector<int>> matrix);
+    ~DancingLinks();
+    
     void cover(Node* column);
     void uncover(Node* column);
+    
     std::vector<int> getExactCoverProblemSolution();
 private:
     void DLX(int step, std::vector<Node*>& solution);
     void extractData(std::vector<Node*> solution);
     void createList(std::vector<std::vector<int>> matrix);
+    void deleteList();
 };
 
 #endif /* dancinglinks_h */
